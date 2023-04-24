@@ -5,7 +5,10 @@ class Handler implements URLHandler {
     String s = "";
 
     public String handleRequest(URI url){
-        System.out.println("Path: " + url.getPath());
+        if (url.getPath().equals("/")){
+            return String.format("Available paths: /add-message?s=(your string)");
+        }else{
+            System.out.println("Path: " + url.getPath());
             if (url.getPath().contains("/add-message")) {
                 String[] parameters = url.getQuery().split("=");
                 if (parameters[0].equals("s")) {
@@ -16,6 +19,7 @@ class Handler implements URLHandler {
             return "404 Not Found!";
         }
     }
+}
 
 class StringServer{
     public static void main(String[] args) throws IOException {
